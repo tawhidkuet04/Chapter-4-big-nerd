@@ -56,5 +56,10 @@
     [logo drawInRect:secondFrame];
 }
 
+-(void)setCircleColor:(UIColor *)circleColor{
+    _circleColor = circleColor ;
+    [self setNeedsDisplay];
+}
+
 
 @end
