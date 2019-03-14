@@ -28,10 +28,26 @@
     UINavigationController  *navController = [[UINavigationController alloc]initWithRootViewController:rootController];
     
     self.window.rootViewController = navController;
-    CGRect firstFrame = self.window.bounds;
-    BNRHypnosisView *firstView = [ [BNRHypnosisView alloc] initWithFrame:firstFrame];
+    // create CGrects for frames
+    CGRect screenRect = self.window.bounds;
+    CGRect bigRect = screenRect ;
+    bigRect.size.width *= 2 ;
+   // bigRect.size.height *= 4 ;
+    // create screen size scrool view and add it to the window view
+    UIScrollView *scroolView = [ [UIScrollView alloc] initWithFrame:screenRect ] ;
+    scroolView.pagingEnabled = YES ;
+    [self.window.rootViewController.view addSubview:scroolView];
+    BNRHypnosisView *hypnosisView =  [ [ BNRHypnosisView alloc] initWithFrame:screenRect];
+    [scroolView addSubview:hypnosisView];
+    screenRect.origin.x += screenRect.size.width ;
+    BNRHypnosisView *anotherView = [ [BNRHypnosisView alloc]initWithFrame:screenRect];
+    [ scroolView addSubview:anotherView];
+    scroolView.contentSize = bigRect.size ;
+    
+    
+    
  //   firstView.backgroundColor = [ UIColor clearColor];
-    [self.window.rootViewController.view addSubview:firstView];
+    
     
 //    CGRect secondFrame = CGRectMake(20,80, 50, 60);
 //    BNRHypnosisView *secondView = [ [BNRHypnosisView alloc] initWithFrame:secondFrame];
